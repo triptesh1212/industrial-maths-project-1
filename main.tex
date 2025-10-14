@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amssymb, amsmath, mathptmx, amsthm, easylist} 
+\title{Industrial Mathematics Analytic Solution}
+\author{Sand Processing Problem}
+\date{October 2025}
+
+\begin{document}
+
+\maketitle
+
+To model the sand processing problem we were given we came up with the following advection-diffusion equation:
+\begin{equation}
+\begin{split}
+    \partial_th(x,t) + v(x,t)\partial h_x(x,t) &= D \partial_{xx}h(x,t) + S(x,t),\\ 
+    h(0,t) &= 0, \\
+    h(l,t) &= 0.
+\end{split}
+\end{equation}
+Where,
+\begin{itemize}
+    \item $h(x,t)$ is the height of the sand in metres at a given time, $t$, and point in space, $x$,
+    \item $l > 0$ is the length of the conveyor belt,
+    \item $v(x,t)$ is the velocity of the conveyor belt,
+    \item $D>0$ is the constant of diffusivity of sand,
+    \item $S(x,t)$ is the rate at which sand is added.
+\end{itemize}
+However, this is difficult to solve analytically. To simplify things we'll start by assuming that $h(x,t) = \alpha$ for some constant $\alpha$. This implies that $\partial_th(x,t) = 0$. We'll also assume that $S(x,t) = S$ and $v(x,t) = v$ for some constants $S>0$ and $v>0$. This gives us the one dimensional steady state of the advection-diffusion equation that can be defined as follows, 
+\begin{equation}
+    \begin{split}
+    D\partial_{xx}h(x,t)-v\partial_xh(x,t)+S&=0, \\
+    h(0,t)&=0,\\
+    h(l,t)&=0.
+    \end{split}
+\end{equation}
+We can now regard $h(x,t)$ as a function of $x$ such that $h(x,t) = g(x)$. This reduces the problem to solving the ordinary differential equation below, 
+\begin{equation}
+    \begin{split}
+        Dg''(x)-vg'(x)+S&=0, \\
+        g(0)&=0,\\
+        g(l)&=0.
+    \end{split}
+\end{equation}
+The complementary equation is $Dg''(x)-vg'(x)=0$, which has the characteristic polynomial $Dm^2-vm=0$. This implies that the homogeneous solution is $g_h(x)=C_1e^{\frac{v}{d}x}+C_2$. Since $S$ is constant and a constant term appears in the homogeneous solution, we try a linear function, $g_p(x)=Ax$, for the particular solution. Substituting into Equation 3 gives $-Av+S=0\Rightarrow A=\frac{S}{v}$. So the general solution is,
+\begin{equation}
+    g(x)=C_1e^{\frac{v}{d}x}+C_2+\frac{S}{v}x.
+\end{equation}
+Using the initial conditions to solve for $C_1$ and $C_2$, we see that,
+\begin{equation}
+\begin{split}
+    C_1&=-C_2 \text{ and}\\
+    C_1&=\frac{Sl}{v(1-e^{\frac{vl}{d}})}.
+\end{split}
+\end{equation}
+Therefore the solution is, 
+\begin{equation}
+    g(x)=\frac{Sl}{v(1-e^{\frac{vl}{d}})}\left(e^{\frac{v}{d}x}-1\right)+\frac{S}{v}x.
+\end{equation}
+
+\newpage
+We wish to solve the one dimensional steady state of the advection-diffusion equation
+\begin{align}
+    D\partial_{xx}h(x,t)-v\partial_xh(x,t)+S&=0, \\
+    h(0,t)&=0,\\
+    h(l,t)&=0.
+\end{align}
+Where 
+\begin{itemize}
+    \item
+    $h(x,t)$ is the height of the sand in metres at a given time $t$ and point in space $x$
+    
+    \item
+    $l>0$ is the length of the conveyor
+
+    \item
+    $v>0$ is the velocity of the conveyor belt
+
+    \item 
+    $D>0$ is the constant of diffusivity of sand
+
+    \item 
+    $S>0$ is amount of sand added, constant with respect to space and time
+
+
+    
+\end{itemize}
+Since $\partial_th(x,t)=0$, we can regard $h$ as a function of $x$, say $h(x,t)=g(x)$. So the problem reduces to solving the ODE
+\begin{equation}
+    \begin{split}
+        Dg''(x)-vg'(x)+S&=0, \\
+        g(0)&=0,\\
+        g(l)&=0.
+    \end{split}
+\end{equation}
+The complementary equation is $Dg''(x)-vg'(x)=0$, which has the characteristic polynomial $Dm^2-vm=0$. This implies that the homogeneous solution is $g_h(x)=C_1e^{\frac{v}{d}x}+C_2$. For the particular solution, since $S$ is constant and a constant term appears in the homogeneous solution, we try a linear function, $g_p(x)=Ax$. Substituting into the ODE gives $-Av+S=0\Rightarrow A=\frac{S}{v}$. So the general solution is $g(x)=C_1e^{\frac{v}{d}x}+C_2+\frac{S}{v}x$. Using the initial conditions, we see 
+\begin{align*}
+    C_1&=-C_2\\
+    C_1&=\frac{Sl}{v(1-e^{\frac{vl}{d}})}.
+\end{align*}
+Therefore the solution is
+\begin{equation*}
+    g(x)=\frac{Sl}{v(1-e^{\frac{vl}{d}})}\left(e^{\frac{v}{d}x}-1\right)+\frac{S}{v}x
+\end{equation*}
+\end{document}
